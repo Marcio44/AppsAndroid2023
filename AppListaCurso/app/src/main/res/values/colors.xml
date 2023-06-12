@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="magenta">#9C27B0</color>
+    <color name="corBotao">#61C4F1</color>
 </resources>
