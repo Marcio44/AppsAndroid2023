@@ -45,9 +45,13 @@ public class Pessoa {
         this.telefoneContato = telefoneContato;
     }
 
-    @NonNull
     @Override
     public String toString() {
-        return  primeiroNome;
+        return "Pessoa{" +
+                "primeiroNome='" + primeiroNome + '\'' +
+                ", sobreNome='" + sobreNome + '\'' +
+                ", cursoDesejado='" + cursoDesejado + '\'' +
+                ", telefoneContato='" + telefoneContato + '\'' +
+                '}';
     }
 }
