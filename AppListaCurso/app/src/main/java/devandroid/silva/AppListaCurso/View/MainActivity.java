@@ -8,10 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import devandroid.silva.AppListaCurso.Controller.PessoaController;
 import devandroid.silva.AppListaCurso.Model.Pessoa;
 import devandroid.silva.AppListaCurso.R;
 
 public class MainActivity extends AppCompatActivity {
+
+    PessoaController controller;
 
     Pessoa pessoa;
     Pessoa outraPessoa;
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        controller = new PessoaController();
 
         pessoa = new Pessoa();
         pessoa.setPrimeiroNome("Marcio");
@@ -71,10 +76,12 @@ public class MainActivity extends AppCompatActivity {
               pessoa.setCursoDesejado(editNomeCurso.getText().toString());
               pessoa.setTelefoneContato(editTelefoneContato.getText().toString());
               Toast.makeText(MainActivity.this,"Operação Realizada com Sucesso! "+ pessoa.toString(),Toast.LENGTH_LONG).show();
-
+              controller.salvarPessoa(pessoa);
 
             }
         });
+
+
 
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
