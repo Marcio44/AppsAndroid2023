@@ -19,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
     //recurso disponivel no android para armazenar dados - sharedPreferences
     SharedPreferences preferences;
     public static final String NOME_PREFERENCES = "pref_listavip";
+
+    // listaVip public para acesso em qualquer lugar do código
+    SharedPreferences.Editor listaVip;
     PessoaController controller;
 
     Pessoa pessoa;
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         //instanciando um sharedPreferences para salvar informações
         preferences = getSharedPreferences("NOME_PREFERENCES",0);
-        SharedPreferences.Editor listaVip = preferences.edit();
+        listaVip = preferences.edit();
 
         //Utilizando o sharedPreferences para recuperar os dados salvo no arquivo NOME_PREFERENCES.xml
         pessoa.setPrimeiroNome(preferences.getString("primeiroNome",""));
@@ -81,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
                 editSobreNome.setText("");
                 editNomeCurso.setText("");
                 editTelefoneContato.setText("");
+
+                //metodo utilizado para limpar o arquivo NOME_PREFERENCES.xml do sharedPreferences -
+                listaVip.clear();
+                listaVip.apply();
             }
         });
 
