@@ -16,6 +16,7 @@ import devandroid.silva.AppListaCurso.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    //recurso disponivel no android para armazenar dados - sharedPreferences
     SharedPreferences preferences;
     public static final String NOME_PREFERENCES = "pref_listavip";
     PessoaController controller;
@@ -40,30 +41,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        pessoa = new Pessoa();
+        controller = new PessoaController();
+
+        editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
+        editSobreNome = findViewById(R.id.editSobreNome);
+        editNomeCurso = findViewById(R.id.editNomeCurso);
+        editTelefoneContato = findViewById(R.id.editTelefoneContato);
+
+        btnLimpar = findViewById(R.id.btnLimpar);
+        btnSalvar = findViewById(R.id.btnSalvar);
+        btnFinalizar = findViewById(R.id.btnFinalizar);
+
+        //instanciando um sharedPreferences para salvar informações
         preferences = getSharedPreferences("NOME_PREFERENCES",0);
         SharedPreferences.Editor listaVip = preferences.edit();
 
-        controller = new PessoaController();
+        //Utilizando o sharedPreferences para recuperar os dados salvo no arquivo NOME_PREFERENCES.xml
+        pessoa.setPrimeiroNome(preferences.getString("primeiroNome",""));
+        pessoa.setSobreNome(preferences.getString("sobreNome",""));
+        pessoa.setCursoDesejado(preferences.getString("cursoDesejado",""));
+        pessoa.setTelefoneContato(preferences.getString("telefoneContato",""));
 
-        pessoa = new Pessoa();
-        pessoa.setPrimeiroNome("Marcio");
-        pessoa.setSobreNome("Silva");
-        pessoa.setCursoDesejado("Segurança da Informação");
-        pessoa.setTelefoneContato("95 99283334");
 
-       editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
-       editSobreNome = findViewById(R.id.editSobreNome);
-       editNomeCurso = findViewById(R.id.editNomeCurso);
-       editTelefoneContato = findViewById(R.id.editTelefoneContato);
-
-       btnLimpar = findViewById(R.id.btnLimpar);
-       btnSalvar = findViewById(R.id.btnSalvar);
-       btnFinalizar = findViewById(R.id.btnFinalizar);
+//        pessoa.setPrimeiroNome("Marcio");
+//        pessoa.setSobreNome("Silva");
+//        pessoa.setCursoDesejado("Segurança da Informação");
+//        pessoa.setTelefoneContato("95 99283334");
 
        editPrimeiroNome.setText(pessoa.getPrimeiroNome());
-        editSobreNome.setText(pessoa.getSobreNome());
-        editNomeCurso.setText(pessoa.getCursoDesejado());
-        editTelefoneContato.setText(pessoa.getTelefoneContato());
+       editSobreNome.setText(pessoa.getSobreNome());
+       editNomeCurso.setText(pessoa.getCursoDesejado());
+       editTelefoneContato.setText(pessoa.getTelefoneContato());
 
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
               pessoa.setTelefoneContato(editTelefoneContato.getText().toString());
               Toast.makeText(MainActivity.this,"Operação Realizada com Sucesso! "+ pessoa.toString(),Toast.LENGTH_LONG).show();
 
+              //salvando os dados no sharedPreferences
               listaVip.putString("primeiroNome",pessoa.getPrimeiroNome());
               listaVip.putString("sobreNome",pessoa.getSobreNome());
               listaVip.putString("cursoDesejado",pessoa.getCursoDesejado());
@@ -109,19 +119,18 @@ public class MainActivity extends AppCompatActivity {
         dadosPessoa = pessoa.getCursoDesejado();
         dadosPessoa = pessoa.getTelefoneContato();
 
-        outraPessoa = new Pessoa();
-        outraPessoa.setPrimeiroNome("Marco");
-        outraPessoa.setSobreNome("Silva");
-        outraPessoa.setCursoDesejado("Redes de Computadores");
-        outraPessoa.setTelefoneContato("95 983546870");
+        //outraPessoa = new Pessoa();
+        //outraPessoa.setPrimeiroNome("Marco");
+        //outraPessoa.setSobreNome("Silva");
+        //outraPessoa.setCursoDesejado("Redes de Computadores");
+        //outraPessoa.setTelefoneContato("95 983546870");
 
-        dadosOutraPessoa = outraPessoa.getPrimeiroNome();
-        dadosOutraPessoa  = outraPessoa.getSobreNome();
-        dadosOutraPessoa  = outraPessoa.getCursoDesejado();
-        dadosOutraPessoa  = outraPessoa.getTelefoneContato();
+        //dadosOutraPessoa = outraPessoa.getPrimeiroNome();
+        //dadosOutraPessoa  = outraPessoa.getSobreNome();
+        //dadosOutraPessoa  = outraPessoa.getCursoDesejado();
+        //dadosOutraPessoa  = outraPessoa.getTelefoneContato();
 
         Log.i("POOAndroid",pessoa.toString());
-        Log.i("POOAndroid",outraPessoa.toString());
 
     }
 }
