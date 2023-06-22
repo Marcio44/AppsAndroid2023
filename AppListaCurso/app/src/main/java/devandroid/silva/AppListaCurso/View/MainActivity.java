@@ -16,17 +16,9 @@ import devandroid.silva.AppListaCurso.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    //recurso disponivel no android para armazenar dados - sharedPreferences
-    SharedPreferences preferences;
-    public static final String NOME_PREFERENCES = "pref_listavip";
-
-    // listaVip public para acesso em qualquer lugar do código
-    SharedPreferences.Editor listaVip;
     PessoaController controller;
 
     Pessoa pessoa;
-    Pessoa outraPessoa;
-
     String dadosPessoa;
     String dadosOutraPessoa;
 
@@ -45,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         pessoa = new Pessoa();
-        controller = new PessoaController();
+        controller = new PessoaController(MainActivity.this);
+        controller.buscarPessoa(pessoa);
 
         editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
         editSobreNome = findViewById(R.id.editSobreNome);
@@ -56,26 +49,10 @@ public class MainActivity extends AppCompatActivity {
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
 
-        //instanciando um sharedPreferences para salvar informações
-        preferences = getSharedPreferences("NOME_PREFERENCES",0);
-        listaVip = preferences.edit();
-
-        //Utilizando o sharedPreferences para recuperar os dados salvo no arquivo NOME_PREFERENCES.xml
-        pessoa.setPrimeiroNome(preferences.getString("primeiroNome",""));
-        pessoa.setSobreNome(preferences.getString("sobreNome",""));
-        pessoa.setCursoDesejado(preferences.getString("cursoDesejado",""));
-        pessoa.setTelefoneContato(preferences.getString("telefoneContato",""));
-
-
-//        pessoa.setPrimeiroNome("Marcio");
-//        pessoa.setSobreNome("Silva");
-//        pessoa.setCursoDesejado("Segurança da Informação");
-//        pessoa.setTelefoneContato("95 99283334");
-
-       editPrimeiroNome.setText(pessoa.getPrimeiroNome());
-       editSobreNome.setText(pessoa.getSobreNome());
-       editNomeCurso.setText(pessoa.getCursoDesejado());
-       editTelefoneContato.setText(pessoa.getTelefoneContato());
+        editPrimeiroNome.setText(pessoa.getPrimeiroNome());
+        editSobreNome.setText(pessoa.getSobreNome());
+        editNomeCurso.setText(pessoa.getCursoDesejado());
+        editTelefoneContato.setText(pessoa.getTelefoneContato());
 
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,39 +62,29 @@ public class MainActivity extends AppCompatActivity {
                 editNomeCurso.setText("");
                 editTelefoneContato.setText("");
 
-                //metodo utilizado para limpar o arquivo NOME_PREFERENCES.xml do sharedPreferences -
-                listaVip.clear();
-                listaVip.apply();
+                controller.limparPessoa();
             }
         });
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              pessoa.setPrimeiroNome(editPrimeiroNome.getText().toString());
-              pessoa.setSobreNome(editSobreNome.getText().toString());
-              pessoa.setCursoDesejado(editNomeCurso.getText().toString());
-              pessoa.setTelefoneContato(editTelefoneContato.getText().toString());
-              Toast.makeText(MainActivity.this,"Operação Realizada com Sucesso! "+ pessoa.toString(),Toast.LENGTH_LONG).show();
+                pessoa.setPrimeiroNome(editPrimeiroNome.getText().toString());
+                pessoa.setSobreNome(editSobreNome.getText().toString());
+                pessoa.setCursoDesejado(editNomeCurso.getText().toString());
+                pessoa.setTelefoneContato(editTelefoneContato.getText().toString());
+                Toast.makeText(MainActivity.this, "Operação Realizada com Sucesso! " + pessoa.toString(), Toast.LENGTH_LONG).show();
 
-              //salvando os dados no sharedPreferences
-              listaVip.putString("primeiroNome",pessoa.getPrimeiroNome());
-              listaVip.putString("sobreNome",pessoa.getSobreNome());
-              listaVip.putString("cursoDesejado",pessoa.getCursoDesejado());
-              listaVip.putString("telefoneContato",pessoa.getTelefoneContato());
-              listaVip.apply();
-
-              controller.salvarPessoa(pessoa);
+                controller.salvarPessoa(pessoa);
 
             }
         });
 
 
-
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(MainActivity.this,"Até Breve",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Até Breve", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
@@ -126,18 +93,7 @@ public class MainActivity extends AppCompatActivity {
         dadosPessoa = pessoa.getCursoDesejado();
         dadosPessoa = pessoa.getTelefoneContato();
 
-        //outraPessoa = new Pessoa();
-        //outraPessoa.setPrimeiroNome("Marco");
-        //outraPessoa.setSobreNome("Silva");
-        //outraPessoa.setCursoDesejado("Redes de Computadores");
-        //outraPessoa.setTelefoneContato("95 983546870");
-
-        //dadosOutraPessoa = outraPessoa.getPrimeiroNome();
-        //dadosOutraPessoa  = outraPessoa.getSobreNome();
-        //dadosOutraPessoa  = outraPessoa.getCursoDesejado();
-        //dadosOutraPessoa  = outraPessoa.getTelefoneContato();
-
-        Log.i("POOAndroid",pessoa.toString());
+        Log.i("POOAndroid", pessoa.toString());
 
     }
 }
