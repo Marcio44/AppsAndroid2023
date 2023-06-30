@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     Spinner spinner;
 
+    List<Pessoa> listaPessoa;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +50,21 @@ public class MainActivity extends AppCompatActivity {
 
         pessoa = new Pessoa();
         controller = new PessoaController(MainActivity.this);
+
+        listaPessoa = controller.listarPessoa();
+
         controller.buscarPessoa(pessoa);
+
+        Pessoa alteracao = listaPessoa.get(1);
+
+        alteracao.setPrimeiroNome("Eva Carolina");
+        alteracao.setSobreNome("Silva");
+        alteracao.setTelefoneContato("(95) 99745-5678");
+        alteracao.setCursoDesejado("Java");
+
+        controller.alterarPessoa(alteracao);
+
+        controller.deletarPessoa(1);
 
         cursoController = new CursoController();
         listaCurso = cursoController.dadosParaSpinner();
