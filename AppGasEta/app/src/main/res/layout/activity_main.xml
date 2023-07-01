@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textTitulo"
+                android:layout_width="347dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="29dp"
+                android:text="@string/txt_titulo_app"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editPrimeiroNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="10dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/txt_hint_primeiro_nome"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColorHint="#8D6E63" />
+
+            <EditText
+                android:id="@+id/editSobreNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="10dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/txt_hint_sobrenome"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColorHint="#8D6E63" />
+
+            <EditText
+                android:id="@+id/editTelefoneContato"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="36dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/txt_telefone_contato"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColorHint="#8D6E63" />
+
+            <TextView
+                android:id="@+id/textListaSpinner"
+                android:textAlignment="center"
+                android:layout_width="219dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="14dp"
+                android:text="@string/textEscolha"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="343dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"/>
+
+            <EditText
+                android:id="@+id/editNomeCurso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:hint="@string/txt_nome_do_curso"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:textColorHint="#8D6E63" />
+
+            <LinearLayout
+                android:layout_width="364dp"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btnLimpar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/btn_limpar" />
+
+
+                <Button
+                    android:id="@+id/btnSalvar"
+                    android:layout_width="106dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="120dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/btn_salvar" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnFinalizar"
+                android:layout_width="335dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="56dp"
+                android:text="@string/btn_finalizar" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
