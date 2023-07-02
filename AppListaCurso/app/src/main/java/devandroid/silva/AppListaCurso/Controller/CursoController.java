@@ -13,6 +13,7 @@ public class CursoController {
 
         listCurso = new ArrayList<Curso>();
 
+        listCurso.add(new Curso("Nenhum"));
         listCurso.add(new Curso("Java"));
         listCurso.add(new Curso("Android"));
         listCurso.add(new Curso("Kotlin"));

@@ -1,22 +1,22 @@
 package devandroid.silva.AppListaCurso.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.List;
 
 import devandroid.silva.AppListaCurso.Controller.CursoController;
 import devandroid.silva.AppListaCurso.Controller.PessoaController;
-import devandroid.silva.AppListaCurso.Model.Curso;
 import devandroid.silva.AppListaCurso.Model.Pessoa;
 import devandroid.silva.AppListaCurso.R;
 
@@ -38,9 +38,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnLimpar;
     Button btnSalvar;
     Button btnFinalizar;
-
     Spinner spinner;
-
     List<Pessoa> listaPessoa;
 
     @Override
@@ -51,20 +49,20 @@ public class MainActivity extends AppCompatActivity {
         pessoa = new Pessoa();
         controller = new PessoaController(MainActivity.this);
 
-        listaPessoa = controller.listarPessoa();
+        //listaPessoa = controller.listarPessoa();
 
         controller.buscarPessoa(pessoa);
 
-        Pessoa alteracao = listaPessoa.get(1);
-
-        alteracao.setPrimeiroNome("Eva Carolina");
-        alteracao.setSobreNome("Silva");
-        alteracao.setTelefoneContato("(95) 99745-5678");
-        alteracao.setCursoDesejado("Java");
-
-        controller.alterarPessoa(alteracao);
-
-        controller.deletarPessoa(1);
+//        Pessoa alteracao = listaPessoa.get(1);
+//
+//        alteracao.setPrimeiroNome("Eva Carolina");
+//        alteracao.setSobreNome("Silva");
+//        alteracao.setTelefoneContato("(95) 99745-5678");
+//        alteracao.setCursoDesejado("Java");
+//
+//        controller.alterarPessoa(alteracao);
+//
+//        controller.deletarPessoa(1);
 
         cursoController = new CursoController();
         listaCurso = cursoController.dadosParaSpinner();
@@ -124,6 +122,31 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        spinner. setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+
+                String selectedItem = adapterView.getItemAtPosition(position).toString();
+                editNomeCurso.setText(selectedItem);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                if (editNomeCurso.getText().equals("Nenhum")) {
+                    editNomeCurso.setError("Escolha o Curso Desejado!");
+                    editNomeCurso.requestFocus();
+                }
+
+
+            }
+        });
+
+
+
+
         dadosPessoa = pessoa.getPrimeiroNome();
         dadosPessoa = pessoa.getSobreNome();
         dadosPessoa = pessoa.getCursoDesejado();
